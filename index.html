@@ -104,4 +104,148 @@
             white-space: nowrap;
         }
 
-        .theme-switch
+        .theme-switch:hover {
+            opacity: 0.8;
+            transform: translateY(-2px);
+        }
+
+        /* ================= HERO & SEARCH ================= */
+        .hero { padding: 40px 5% 20px; text-align: center; }
+        .hero h1 { font-size: 2.8rem; color: var(--primary-color); margin-bottom: 10px; font-family: 'Cambria', serif; }
+        
+        .search-container { max-width: 600px; margin: 20px auto; }
+        .search-box {
+            width: 100%; padding: 15px 25px; border: 2px solid var(--border);
+            border-radius: 12px; background: var(--card-bg); color: var(--text-dark); outline: none;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+        }
+
+        /* ================= CARDS GRID ================= */
+        main { padding: 10px 5% 80px; max-width: 1200px; margin: 0 auto; }
+        .cards-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
+            gap: 20px; 
+        }
+
+        .lit-card {
+            text-decoration: none; color: inherit; background: var(--card-bg);
+            border-radius: 15px; padding: 25px; border: 1px solid var(--border);
+            display: flex; flex-direction: column; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative; overflow: hidden;
+        }
+
+        .lit-card::before {
+            content: "❝"; position: absolute; right: 10px; top: -10px; font-size: 6rem;
+            color: var(--soft-color); opacity: 0.5; font-weight: bold; font-family: Georgia, serif;
+        }
+
+        .lit-card:hover { 
+            transform: translateY(-8px); 
+            border-color: var(--primary-color); 
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1); 
+        }
+
+        .card-emoji { font-size: 2.2rem; margin-bottom: 15px; position: relative; z-index: 1;}
+        .card-title { font-size: 1.05rem; font-weight: 700; color: var(--primary-color); margin-bottom: 10px; position: relative; z-index: 1;}
+        .card-desc { font-size: 0.9rem; color: var(--text-light); margin-bottom: 15px; flex-grow: 1; position: relative; z-index: 1;}
+        .card-meta { font-size: 0.85rem; font-weight: 600; color: var(--accent-color); border-top: 1px dashed var(--border); padding-top: 12px; position: relative; z-index: 1;}
+
+        footer { text-align: center; padding: 40px 20px; background: var(--header-bg); border-top: 1px solid var(--border); }
+        .author { color: var(--primary-color); font-weight: 800; font-size: 1.1rem; margin-top: 5px; display: block; }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo">
+        <img src="images/logo.png?v=1" alt="Logo Ngữ Văn" class="logo-img">
+        <span>Ngữ Văn 9 - Ôn Thi Vào 10</span>
+    </div>
+
+    <div class="header-actions">
+        <a href="https://forms.gle/3EFuhxNX2c9X64mt5" target="_blank" class="theme-switch">
+            <span>⚠️</span>
+            <span>Báo Lỗi</span>
+        </a>
+
+        <button class="theme-switch" id="theme-toggle">
+            <span id="theme-icon">🌙</span>
+            <span id="theme-text">Chế độ tối</span>
+        </button>
+    </div>
+</header>
+
+    <section class="hero">
+        <h1>Ngữ Văn 9 - Ôn Thi Vào 10 🖋️</h1>
+        <div class="search-container">
+            <input type="text" class="search-box" id="search-input" placeholder="Tìm kiếm trong 10 bộ tài liệu... 🔍">
+        </div>
+    </section>
+
+    <main>
+        <div class="cards-grid" id="cards-container"></div>
+    </main>
+
+    <footer>
+        <p>Hệ thống lưu trữ tài liệu ôn tập Ngữ Văn 9 & Luyện thi vào 10 📜</p>
+        <span class="author">Created by Nguyễn Hoàng Long 🔥</span>
+    </footer>
+
+    <script>
+        const cardData = [
+            { emoji: "📕", title: "Sách Văn 9 Tập 1 KNTT", url: "https://drive.google.com/file/d/1_2A3RgwtzS4VxILMKfLvC38pYFk_qwsP/view", desc: "Sách giáo khoa Ngữ Văn 9 - Tập 1 Kết nối tri thức với cuộc sống." },
+            { emoji: "📗", title: "Sách Văn 9 Tập 2 KNTT", url: "https://drive.google.com/file/d/1tH15Jv5ae_w4I__AP_cLXn9yBSqNk7Fy/view", desc: "Sách giáo khoa Ngữ Văn 9 - Tập 2 Kết nối tri thức với cuộc sống." },
+            { emoji: "📓", title: "Sổ Tay Kiến Thức Văn 9", url: "https://drive.google.com/file/d/1fOdzIKs7J6oLIXcgbXx9yfuG-reDSwoa/view", desc: "Sổ tay tổng hợp lý thuyết và kiến thức trọng tâm môn Ngữ Văn 9." },
+            { emoji: "📖", title: "Tự Học Văn 9", url: "https://metaisach.com/reader/giup-em-hoc-tot-ngu-van-9-tap-2-1ab4a052.pdf", desc: "Tài liệu hướng dẫn giúp em học tốt và tự học môn Ngữ Văn." },
+            { emoji: "📝", title: "Các Đề GHK1 Văn 9", url: "https://vndethi.com/chuyen-muc/de-thi-giua-ki-1-ngu-van-9/", desc: "Tổng hợp các đề thi giữa học kỳ 1 bám sát chương trình." },
+            { emoji: "📜", title: "Các Đề CHK1 Văn 9", url: "https://vndethi.com/chuyen-muc/de-thi-cuoi-ki-1-ngu-van-9/", desc: "Bộ sưu tập đề thi cuối học kỳ 1 chọn lọc và chi tiết." },
+            { emoji: "📝", title: "Các Đề GHK2 Văn 9", url: "https://vndethi.com/chuyen-muc/de-thi-giua-ki-2-ngu-van-9/", desc: "Tổng hợp các đề thi giữa học kỳ 2 cập nhật mới nhất." },
+            { emoji: "📚", title: "Các Đề CHK2 Văn 9 (Ver1)", url: "https://dethihay.net/de-thi-va-dap-an-ngu-van-9-cuoi-ki-2-nam-hoc-2025-2026-12-de-sach-chan-troi-sang-tao-1227/", desc: "Bộ đề thi cuối học kỳ 2 (Sách Chân trời sáng tạo)." },
+            { emoji: "📑", title: "Các Đề CHK2 Văn 9 (Ver2)", url: "https://vndethi.com/chuyen-muc/de-thi-cuoi-ki-2-ngu-van-9/", desc: "Kho đề thi cuối học kỳ 2 tổng hợp đa dạng cấu trúc." },
+            { emoji: "🎓", title: "50 Đề Minh Hoạ Vào 10", url: "https://drive.google.com/file/d/19Qe7n9fqs2L2E4XMLr8M_t-nMG5gx_Ri/view?fbclid=IwY2xjawRu1l1leHRuA2FlbQIxMABicmlkETExT0FyN1Q4NjY2Q3lzZWhvc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHuuGin9xrNgQTY3BcSAuzH1hQ0rAxie9LgE7D7u1IfcW4IahbaLHvw2M6htQ_aem_26MMrcOyAoISy6ZaGiXVQA", desc: "Kho dữ liệu 50 đề minh hoạ ôn thi tuyển sinh lớp 10 môn Ngữ Văn." }
+        ];
+
+        const container = document.getElementById('cards-container');
+        cardData.forEach(data => {
+            const card = document.createElement('a');
+            card.href = data.url;
+            card.target = "_blank";
+            card.className = "lit-card";
+            card.innerHTML = `
+                <span class="card-emoji">${data.emoji}</span>
+                <div class="card-title">${data.title}</div>
+                <div class="card-desc">${data.desc}</div>
+                <div class="card-meta">Đọc tài liệu ➜</div>
+            `;
+            container.appendChild(card);
+        });
+
+        // Theme Toggle Logic
+        const toggleBtn = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
+        const themeText = document.getElementById('theme-text');
+
+        toggleBtn.addEventListener('click', () => {
+            let theme = document.documentElement.getAttribute('data-theme');
+            if (theme === 'dark') {
+                document.documentElement.removeAttribute('data-theme');
+                themeIcon.innerText = '🌙';
+                themeText.innerText = 'Chế độ tối';
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                themeIcon.innerText = '☀️';
+                themeText.innerText = 'Chế độ sáng';
+            }
+        });
+
+        // Search Logic
+        document.getElementById('search-input').addEventListener('input', (e) => {
+            const term = e.target.value.toLowerCase();
+            document.querySelectorAll('.lit-card').forEach(card => {
+                card.style.display = card.textContent.toLowerCase().includes(term) ? 'flex' : 'none';
+            });
+        });
+    </script>
+</body>
+</html>
