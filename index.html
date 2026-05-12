@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="images/favicon.ico?v=1">
     <title>Ngữ Văn 9 | Ôn Thi Vào 10</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600;700;800&display=swap" rel="stylesheet">
+
     <style>
         /* ================= THEME VARIABLES (LITERATURE RED/WARM EDITION) ================= */
         :root {
@@ -17,6 +22,7 @@
             --text-light: #785a5a;
             --accent-color: #059669; /* Xanh lục bảo tạo điểm nhấn */
             --border: #f3e8e8;
+            --font-main: 'Be Vietnam Pro', system-ui, -apple-system, sans-serif;
         }
 
         [data-theme="dark"] {
@@ -45,7 +51,7 @@
                               linear-gradient(90deg, var(--soft-color) 1px, transparent 1px);
             background-size: 40px 40px;
             color: var(--text-dark);
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            font-family: var(--font-main);
             line-height: 1.6;
         }
 
@@ -69,7 +75,7 @@
             display: flex;
             align-items: center;
             gap: 14px;
-            font-family: 'Cambria', serif;
+            font-family: var(--font-main); /* Đã sửa font ở đây */
         }
 
         .logo-img {
@@ -82,7 +88,6 @@
             border: 2px solid var(--primary-color);
         }
 
-        /* Container chứa 2 nút điều hướng */
         .header-actions {
             display: flex;
             gap: 10px;
@@ -99,9 +104,10 @@
             display: flex;
             align-items: center;
             gap: 8px;
-            text-decoration: none; /* Bỏ gạch chân cho link báo lỗi */
+            text-decoration: none;
             font-size: 14px;
             white-space: nowrap;
+            font-family: var(--font-main);
         }
 
         .theme-switch:hover {
@@ -111,13 +117,21 @@
 
         /* ================= HERO & SEARCH ================= */
         .hero { padding: 40px 5% 20px; text-align: center; }
-        .hero h1 { font-size: 2.8rem; color: var(--primary-color); margin-bottom: 10px; font-family: 'Cambria', serif; }
+        .hero h1 { 
+            font-size: 2.8rem; 
+            color: var(--primary-color); 
+            margin-bottom: 10px; 
+            font-family: var(--font-main); /* Đã sửa font ở đây */
+            font-weight: 800;
+            line-height: 1.2;
+        }
         
         .search-container { max-width: 600px; margin: 20px auto; }
         .search-box {
             width: 100%; padding: 15px 25px; border: 2px solid var(--border);
             border-radius: 12px; background: var(--card-bg); color: var(--text-dark); outline: none;
             box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+            font-family: var(--font-main);
         }
 
         /* ================= CARDS GRID ================= */
@@ -203,7 +217,7 @@
             { emoji: "📝", title: "Các Đề GHK2 Ngữ Văn 9", url: "https://vndethi.com/chuyen-muc/de-thi-giua-ki-2-ngu-van-9/", desc: "Tổng hợp các đề thi giữa học kỳ 2 cập nhật mới nhất." },
             { emoji: "📚", title: "Các Đề CHK2 Ngữ Văn 9 (Ver1)", url: "https://dethihay.net/de-thi-va-dap-an-ngu-van-9-cuoi-ki-2-nam-hoc-2025-2026-12-de-sach-chan-troi-sang-tao-1227/", desc: "Bộ đề thi cuối học kỳ 2 (Sách Chân trời sáng tạo)." },
             { emoji: "📑", title: "Các Đề CHK2 Ngữ Văn 9 (Ver2)", url: "https://vndethi.com/chuyen-muc/de-thi-cuoi-ki-2-ngu-van-9/", desc: "Kho đề thi cuối học kỳ 2 tổng hợp đa dạng cấu trúc." },
-            { emoji: "🎓", title: "50 Đề Minh Hoạ Vào 10", url: "https://drive.google.com/file/d/19Qe7n9fqs2L2E4XMLr8M_t-nMG5gx_Ri/view?fbclid=IwY2xjawRu1l1leHRuA2FlbQIxMABicmlkETExT0FyN1Q4NjY2Q3lzZWhvc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHuuGin9xrNgQTY3BcSAuzH1hQ0rAxie9LgE7D7u1IfcW4IahbaLHvw2M6htQ_aem_26MMrcOyAoISy6ZaGiXVQA", desc: "Kho dữ liệu 50 đề minh hoạ ôn thi tuyển sinh lớp 10 môn Ngữ Văn." }
+            { emoji: "🎓", title: "50 Đề Minh Hoạ Vào 10", url: "https://drive.google.com/file/d/19Qe7n9fqs2L2E4XMLr8M_t-nMG5gx_Ri/view", desc: "Kho dữ liệu 50 đề minh hoạ ôn thi tuyển sinh lớp 10 môn Ngữ Văn." }
         ];
 
         const container = document.getElementById('cards-container');
